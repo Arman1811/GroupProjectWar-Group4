@@ -19,6 +19,7 @@ public abstract class Game
     
     public Game(String givenName)
     {
+        // game method
         gameName = givenName;
         players = new ArrayList();
     }
