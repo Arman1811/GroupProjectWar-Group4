@@ -7,14 +7,8 @@ package ca.sheridancollege.project;
 
 /**
  *
- * @author ashle
+ * @author Ashley Patel
  * 
- * Things to change
-- Change the outputs
-- add method().ignoreCase
-- Fill in missing base code stuff
-- when cards = 0 for a player
-
  */
 public class WarTester {
     public static void main(String[] args){ 

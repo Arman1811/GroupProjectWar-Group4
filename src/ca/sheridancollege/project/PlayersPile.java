@@ -7,7 +7,7 @@ package ca.sheridancollege.project;
 
 /**
  *
- * @author ashle
+ * @author Ashley patel
  */
 public class PlayersPile extends Card {
 

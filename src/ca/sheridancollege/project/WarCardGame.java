@@ -10,12 +10,13 @@ import java.util.Scanner;
 
 /**
  *
- * @author ashle
+ * @author Ashley Patel
  */
 public class WarCardGame extends Game {
 
     private GroupOfCards deck;
     
+//  declare player variables 
     private LivePlayer player1;
     private ArrayList<PlayersPile> deckPlayer1; 
     private PlayersPile player1Card;
@@ -39,16 +40,17 @@ public class WarCardGame extends Game {
         Scanner input = new Scanner(System.in);
         System.out.println("Number of cards playing with (must be even):");
         String deckSizeString = input.nextLine();
-        int deckSize = Integer.parseInt(deckSizeString); // this stores the number of cards in the deck being used
+        int deckSize = Integer.parseInt(deckSizeString); 
+        //deck size must be between 0 and 52
         if (deckSize > 52 || deckSize < 0) {
             System.out.println("Re-enter Number of cards playing with as it must be even and no more than 52:");
             String deckSizeStringRE = input.nextLine();
             deckSize = Integer.parseInt(deckSizeStringRE);
         }
-        System.out.println("What is player 1 name: ");
+        System.out.println("What is player 1's name: ");
         String player1Name = input.nextLine();
         player1 = new LivePlayer(player1Name);
-        System.out.println("What is player 2 name: ");
+        System.out.println("What is player 2's name: ");
         String player2Name = input.nextLine();
         player2 = new LivePlayer(player2Name);
 
@@ -69,7 +71,7 @@ public class WarCardGame extends Game {
                 deckPlayer2.add((PlayersPile) deck.removeFirstCard());
             }
         }
-//        Battling
+//        Determine highest card
         do {
             player1Card = deckPlayer1.remove(0);
             player2Card = deckPlayer2.remove(0);
@@ -98,14 +100,14 @@ public class WarCardGame extends Game {
         } while (response.equalsIgnoreCase("Y") && (deckPlayer1.size() > 0 && deckPlayer2.size() > 0));
         declareWinner();
     }
-
+// asks the players if they want to go again
     public String nextTurn() {
         Scanner input = new Scanner(System.in);
         System.out.println("\nContinue Y/N?");
         String response = input.nextLine();
         return response;
     }
-
+//displays the round and what cards were drawn
     public void displayRound(LivePlayer player1, PlayersPile player1Card,
             LivePlayer player2, PlayersPile player2Card) {
         System.out.println("\nROUND START");
@@ -115,25 +117,25 @@ public class WarCardGame extends Game {
         System.out.println("Player 2: " + player2.getPlayerID() + "\n" + "Draws: "
                 + player2Card.getRank() + " of " + player2Card.getSuit());
     }
-
+//displays the winner for the round
     public void displayRoundWinner(LivePlayer winner, LivePlayer loser, int winnerScore, int loserScore) {
         System.out.println("\nWINNER: " + winner.getPlayerID() + "\nWinner scores 1 point");
         System.out.println("\nTotal Score");
         System.out.println(winner.getPlayerID() + ": " + winnerScore + " Points");
         System.out.println(loser.getPlayerID() + ": " + loserScore + " Points");
     }
-
+//delcare game winner
     @Override
     public void declareWinner() {
         if (player1Score > player2Score) {
             System.out.println("\n" + player1.getPlayerID() + " WON THE GAME!!!");
-            System.out.println(player2.getPlayerID() + " has no more cards");
+            System.out.println(player2.getPlayerID() + " has no more cards or user ended game");
             System.out.println("\nTotal Score");
             System.out.println(player1.getPlayerID() + ": " + player1Score + " Points");
             System.out.println(player2.getPlayerID() + ": " + player2Score + " Points");
         } else if (player2Score > player1Score) {
             System.out.println("\n" + player2.getPlayerID() + " WON THE GAME!!!");
-            System.out.println(player1.getPlayerID() + " has no more cards");
+            System.out.println(player1.getPlayerID() + " has no more cards or user ended game");
             System.out.println("\nTotal Score");
             System.out.println(player1.getPlayerID() + ": " + player1Score + " Points");
             System.out.println(player2.getPlayerID() + ": " + player2Score + " Points");
@@ -144,19 +146,19 @@ public class WarCardGame extends Game {
             System.out.println(player2.getPlayerID() + ": " + player2Score + " Points");
         }
     }
-//    }
 
+//display war round winners
     public void displayWarRoundWinner(LivePlayer winner, LivePlayer loser, int winnerScore, int loserScore) {
         System.out.println("\nWINNER: " + winner.getPlayerID() + "\nWinner scores 1 WAR point");
         System.out.println("\nWAR Total Score");
         System.out.println(winner.getPlayerID() + ": " + winnerScore + " Points");
         System.out.println(loser.getPlayerID() + ": " + loserScore + " Points");
     }
-
+//runs war rounds when a war is declared
     public void war() {
         System.out.println("\nA WAR HAS STARTED!!! \nBoth Players drew the same value cards.");
         System.out.println("Each player will now face off in best of 3 battles!");
-        System.out.println("\nWAR TURN 1!!");
+        System.out.println("\nWAR TURN !!");
         player1WarScore = 0;
         player2WarScore = 0;
         PlayersPile player1WarCard1 = deckPlayer1.remove(0);
