@@ -10,10 +10,36 @@ package ca.sheridancollege.project;
  * enough to be instantiated for any Card game. Students wishing to add to the code 
  * should remember to add themselves as a modifier.
  * @author Sivagama
+ * @modified Ashley Patel Aug 10 2020
  */
 public abstract class Card 
 {
-    //default modifier for child classes
+  private Rank rank;
+	private Suit suit;
+        
+        public enum Suit{HEARTS, CLUBS, SPADES, DIAMONDS};
+        public enum Rank{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING};
+
+    public Card(Rank rank, Suit suit) {
+        this.rank = rank;
+        this.suit = suit;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public void setSuit(Suit suit) {
+        this.suit = suit;
+    }
     
     /**
      * Students should implement this method for their specific children classes 
@@ -22,6 +48,5 @@ public abstract class Card
     
     @Override
     public abstract String toString();
-    
     
 }
